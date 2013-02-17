@@ -21,7 +21,7 @@ public class LauncherFrame extends Frame
     
     public LauncherFrame(MCLauncher main) throws HeadlessException
     {
-        super(main.getConfig().getString("window.title"));
+        super("Minecraft - mod by Legendaire45");
         this.main = main;
     }
     
