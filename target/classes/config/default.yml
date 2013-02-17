@@ -1,0 +1,15 @@
+window:
+  theme: com.kokakiwi.mclauncher.ui.simple.SimpleTheme                                          # Theme du launcher, si non indique, il utilise SimpleTheme
+news:
+  url: 'http://mcupdate.tumblr.com/'                                                            # URL de la page des news (Si utilise)
+game:
+  folder:
+    customFolder: false                                                                         # Utiliser le gameDir a la place du dossier user
+    gameDir: 'retrogame'                                                                         # Dossier contenant le dossier du jeu (folderName)
+login:
+  file: 'lastlogin'
+  encryptionKey: 'passwordfile'
+  launcherVersion: 13
+  offlineMode: false
+launcher:
+  gameHost: 'www.minecraft.net'
