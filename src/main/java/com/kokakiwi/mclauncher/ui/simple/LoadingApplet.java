@@ -85,7 +85,7 @@ public class LoadingApplet extends Applet implements MouseListener
             g.setColor(Color.LIGHT_GRAY);
             
             String msg = Translater.getString("updater.title", new String[] {
-                    "GAMENAME", api.getConfig().getString("window.title") });
+                    "GAMENAME", "Minecraft - mod by Legendaire45" });
             String subtaskMessage = "";
             
             if (api.getUpdater().getState() == State.DOWNLOADING

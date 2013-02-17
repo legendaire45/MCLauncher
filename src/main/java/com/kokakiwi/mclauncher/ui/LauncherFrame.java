@@ -31,7 +31,7 @@ public class LauncherFrame extends Frame
         {
             setIconImage(ImageIO.read(LauncherFrame.class
                     .getResourceAsStream("/"
-                            + main.getConfig().getString("window.icon"))));
+                            + "res/favicon.png")));
         }
         catch (final IOException e)
         {

@@ -16,18 +16,11 @@ public class VersionChecker
     public static void checkVersion(LauncherAPI api) throws Exception
     {
         boolean update = false;
-        
-        final List<Map<String, Object>> versions = api.getConfig().getMapList(
-                "updater.versions");
-        
-        for (final Map<String, Object> version : versions)
-        {
+       
             if (!update)
             {
-                final File file = new File(api.getMinecraftDirectory(),
-                        (String) version.get("file"));
-                final String lastVersion = getLastVersion(api,
-                        (String) version.get("source"));
+                final File file = new File(api.getMinecraftDirectory(),"version");
+                final String lastVersion = getLastVersion(api,"https://dl.dropbox.com/u/66055117/retrogame/version.html");
                 
                 if (lastVersion != null)
                 {
@@ -46,11 +39,10 @@ public class VersionChecker
                         if (v2.compareTo(v1) > 0)
                         {
                             update = true;
-                            boolean force = (Boolean) version.get("force");
+                            boolean force = true;
                             if (!force)
                             {
-                                force = api.getConfig().getBoolean(
-                                        "updater.askUpdateIfAvailable", true);
+                                force = false;
                             }
                             
                             if (!force)
@@ -68,7 +60,6 @@ public class VersionChecker
                 }
             }
         }
-    }
     
     public static String readVersionFile(LauncherAPI api, File file)
             throws Exception

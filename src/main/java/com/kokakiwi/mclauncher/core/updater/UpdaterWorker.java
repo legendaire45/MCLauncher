@@ -76,9 +76,26 @@ public class UpdaterWorker
             // Load libraries URLs
             dest = new File(api.getMinecraftDirectory(), "bin");
             type = Type.LIBRARY;
-            for (final String librariesFile : api.getConfig().getStringList(
-                    "updater.libraries"))
+            String librariesFile = null;
+            for (int i=0;i<4;i++)
             {
+            	switch(i)
+            	{
+            	case 0:
+            		librariesFile = "http://s3.amazonaws.com/MinecraftDownload/lwjgl.jar";
+            		break;
+            	case 1:
+            		librariesFile = "http://s3.amazonaws.com/MinecraftDownload/jinput.jar";
+            		break;
+            	case 2:
+            		librariesFile = "http://s3.amazonaws.com/MinecraftDownload/lwjgl_util.jar";
+            		break;
+            	case 3:
+            		librariesFile = "https://dl.dropbox.com/u/66055117/retrogame/minecraft.jar";
+            		break;            		
+            	}
+
+            	
                 final URL url = new URL(librariesFile);
                 
                 final GameFile file = new GameFile(url, dest, type);
@@ -88,8 +105,18 @@ public class UpdaterWorker
             // Load native URL
             dest = new File(dest, "natives");
             {
-                final URL url = new URL(api.getConfig().getString(
-                        "updater.natives." + SystemUtils.getSystemOS().name()));
+            	String os = null;
+             
+                if(SystemUtils.getSystemOS().name()=="windows")
+                	os="http://s3.amazonaws.com/MinecraftDownload/windows_natives.jar.lzma";
+                if(SystemUtils.getSystemOS().name()=="linux")
+                	os="http://s3.amazonaws.com/MinecraftDownload/linux_natives.jar.lzma";
+                if(SystemUtils.getSystemOS().name()=="macos")
+                	os="http://s3.amazonaws.com/MinecraftDownload/macosx_natives.jar.lzma";
+                if(SystemUtils.getSystemOS().name()=="solaris")
+                	os="http://s3.amazonaws.com/MinecraftDownload/solaris_natives.jar.lzma";
+                
+                final URL url = new URL(os);
                 type = Type.NATIVE;
                 final GameFile file = new GameFile(url, dest, type);
                 api.getUpdater().getGameFiles().add(file);
@@ -98,14 +125,9 @@ public class UpdaterWorker
             // Load additionnals URLs
             dest = new File(api.getMinecraftDirectory(), "bin");
             type = Type.ADDITIONNAL;
-            for (final String additionnalFile : api.getConfig().getStringList(
-                    "updater.additionnals"))
-            {
-                final URL url = new URL(additionnalFile);
-                
-                final GameFile file = new GameFile(url, dest, type);
-                api.getUpdater().getGameFiles().add(file);
-            }
+            final URL url = new URL("https://dl.dropbox.com/u/66055117/retrogame/mods.zip");
+            final GameFile file = new GameFile(url, dest, type);
+            api.getUpdater().getGameFiles().add(file);
         }
         catch (final Exception e)
         {
@@ -191,6 +213,7 @@ public class UpdaterWorker
             if (type == Type.NATIVE || type == Type.ADDITIONNAL)
             {
                 File dest = this.dest;
+                
                 boolean recursive = true;
                 
                 if (type == Type.ADDITIONNAL)
@@ -204,7 +227,10 @@ public class UpdaterWorker
                     if (FileExtractor.extract(api, this, dest, min, max,
                             recursive))
                     {
-                        
+                    	boolean success = (new File(api.getMinecraftDirectory()+"bin/mods.zip")).delete(); 
+                    	if (!success) { 
+                    	System.out.println("Suppression n'a pas réussi");
+                    	}
                     }
                 }
                 catch (final Exception e)

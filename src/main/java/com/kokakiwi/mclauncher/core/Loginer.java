@@ -50,7 +50,7 @@ public class Loginer
     {
         String result = null;
         
-        final String url = main.getConfig().getString("login.url");
+        final String url = "https://login.minecraft.net";
         
         final Map<String, String> params = new LinkedHashMap<String, String>();
         params.put("user", username);

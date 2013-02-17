@@ -109,8 +109,7 @@ public class LauncherApplet extends Applet implements AppletStub
     {
         try
         {
-            return new URL(api.getConfig()
-                    .getString("launcher.documentBaseURL"));
+            return new URL("http://www.minecraft.net/game/");
         }
         catch (final MalformedURLException e)
         {

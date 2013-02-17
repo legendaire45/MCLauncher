@@ -100,8 +100,7 @@ public class LauncherAPI
     {
         File dir = null;
         File root = new File(System.getProperty("user.home", ".") + "/");
-        final String appName = main.getConfig().getString(
-                "game.folder.folderName");
+        final String appName = "retrogame";
         
         if (main.getConfig().getBoolean("game.folder.customFolder"))
         {

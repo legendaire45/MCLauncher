@@ -15,13 +15,13 @@ import java.util.logging.Logger;
 
 public class MCLogger
 {
-    private final static Logger    global = Logger.getLogger("MCLauncher");
+    private final static Logger    global = Logger.getLogger("RCLauncher");
     
     public final static DebugLevel DEBUG  = new DebugLevel();
     
     public static void register()
     {
-        register(new File(getLauncherDir(), "mclauncher.log"));
+        register(new File(getLauncherDir(), "rclauncher.log"));
     }
     
     public static void register(String fileName)
@@ -84,7 +84,7 @@ public class MCLogger
         File dir = null;
         
         File root = new File(System.getProperty("user.home", ".") + "/");
-        final String appName = "mclauncher";
+        final String appName = "rclauncher";
         
         switch (SystemUtils.getSystemOS())
         {

@@ -52,8 +52,7 @@ public class SimpleTheme implements Theme
             {
                 background = ImageIO.read(
                         SimpleTheme.class.getResourceAsStream("/"
-                                + api.getConfig().getString(
-                                        "theme.simple.background")))
+                                + "res/dirt.png"))
                         .getScaledInstance(32, 32, 16);
             }
             catch (final IOException e)
