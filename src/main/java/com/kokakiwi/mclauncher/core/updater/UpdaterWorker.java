@@ -224,13 +224,24 @@ public class UpdaterWorker
                 
                 try
                 {
+                	/// delet dossier mods
+
+                	File mods=new File(api.getMinecraftDirectory() + File.separator + "mods" + File.separator);
+
+                	deleteDirectory(mods);
+
+                	/// delet dossier mods
+
+                	/// delet dossier coremods
+
+                	File coremods=new File(api.getMinecraftDirectory() + File.separator + "coremods" + File.separator);
+
+                	deleteDirectory1(coremods);
+
+                	/// delet dossier coremods
                     if (FileExtractor.extract(api, this, dest, min, max,
                             recursive))
                     {
-                    	boolean success = (new File(api.getMinecraftDirectory()+"bin/mods.zip")).delete(); 
-                    	if (!success) { 
-                    	System.out.println("Suppression n'a pas réussi");
-                    	}
                     }
                 }
                 catch (final Exception e)
@@ -238,6 +249,82 @@ public class UpdaterWorker
                     e.printStackTrace();
                 }
             }
+        }
+        
+      /// delet dossier mods
+
+        static public boolean deleteDirectory(File mods) { 
+
+            boolean resultat = true; 
+
+            
+
+            if( mods.exists() ) { 
+
+                    File[] files = mods.listFiles(); 
+
+                    for(int i=0; i<files.length; i++) { 
+
+                            if(files[i].isDirectory()) { 
+
+                                    resultat &= deleteDirectory(files[i]); 
+
+                            } 
+
+                            else { 
+
+                            resultat &= files[i].delete(); 
+
+                            } 
+
+                    } 
+
+            } 
+
+            resultat &= mods.delete(); 
+
+            return( resultat );
+
+        }
+
+            /// delet dossier mods
+
+          /// delet dossier coremods
+
+            static public boolean deleteDirectory1(File coremods) { 
+
+                boolean resultat = true; 
+
+                
+
+                if( coremods.exists() ) { 
+
+                        File[] files = coremods.listFiles(); 
+
+                        for(int i=0; i<files.length; i++) { 
+
+                                if(files[i].isDirectory()) { 
+
+                                        resultat &= deleteDirectory(files[i]); 
+
+                                } 
+
+                                else { 
+
+                                resultat &= files[i].delete(); 
+
+                                } 
+
+                        } 
+
+                } 
+
+                resultat &= coremods.delete(); 
+
+                return( resultat ); 
+
+                /// delet dossier coremods
+
         }
         
         public URL getUrl()
