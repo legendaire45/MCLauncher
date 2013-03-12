@@ -15,6 +15,7 @@ options:
   forceUpdateTrue: 'Forcée!'
   offlineMode: 'Mode Hors-ligne'
   onlineMode: 'Mode En-ligne'
+  lanMode: 'Mode Lan' 
   mods:
     title: 'Mods'
   gameLocationLabel: 'Emplacement sur le disque'

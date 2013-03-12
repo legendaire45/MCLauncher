@@ -5,18 +5,25 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.List;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Map;
 
 import com.kokakiwi.mclauncher.api.LauncherAPI;
 import com.kokakiwi.mclauncher.utils.Version;
 
 public class VersionChecker
-{
+{	
     public static void checkVersion(LauncherAPI api) throws Exception
     {
+    	
         boolean update = false;
-       
+        if(isInternetReachable())
+        {
+        	
             if (!update)
             {
                 final File file = new File(api.getMinecraftDirectory(),"version");
@@ -60,6 +67,43 @@ public class VersionChecker
                 }
             }
         }
+   }
+    
+  //checks for connection to the internet through dummy request
+    public static boolean isInternetReachable()
+    {
+        try {
+            //make a URL to a known source
+            URL url = new URL("http://www.google.com");
+
+            //open a connection to that source
+            HttpURLConnection urlConnect = (HttpURLConnection)url.openConnection();
+
+            //trying to retrieve data from the source. If there
+            //is no connection, this line will fail
+            urlConnect.setConnectTimeout(1000);
+            urlConnect.setReadTimeout(1000);
+            Object objData = urlConnect.getContent();
+
+        } 
+        
+        catch (SocketTimeoutException e) {
+        	   e.printStackTrace();
+               return false;
+        	   
+        }catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return false;
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
     
     public static String readVersionFile(LauncherAPI api, File file)
             throws Exception

@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Built-By: Legendaire45
-Build-Jdk: 1.7.0_06
-Main-Class: com.kokakiwi.mclauncher.MCLauncher
-Created-By: Maven Integration for Eclipse
-

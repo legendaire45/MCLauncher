@@ -15,6 +15,7 @@ public class Updater implements Runnable
     
     private boolean                            askUpdate   = false;
     private boolean                            doUpdate    = false;
+
     private int                                percentage  = 0;
     private State                              state       = State.INIT;
     private String                             error       = null;
