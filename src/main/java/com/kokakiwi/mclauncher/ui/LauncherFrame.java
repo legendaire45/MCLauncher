@@ -21,7 +21,7 @@ public class LauncherFrame extends Frame
     
     public LauncherFrame(MCLauncher main) throws HeadlessException
     {
-        super("Minecraft - mod by Legendaire45");
+        super("Minecraft - ModPack by Paxa");
         this.main = main;
     }
     

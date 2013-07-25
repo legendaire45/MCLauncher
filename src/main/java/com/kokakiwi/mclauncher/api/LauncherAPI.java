@@ -78,6 +78,16 @@ public class LauncherAPI
         return main.getTheme();
     }
     
+    public String getDropbox()
+    {
+    	return main.getDropbox();
+    }
+    
+    public String getTumblr()
+    {
+    	return main.getTumblr();
+    }
+    
     public Image getBackground()
     {
         Image background = null;
@@ -100,11 +110,11 @@ public class LauncherAPI
     {
         File dir = null;
         File root = new File(System.getProperty("user.home", ".") + "/");
-        final String appName = "retrogame";
+        final String appName = main.getName();
         
-        if (main.getConfig().getBoolean("game.folder.customFolder"))
+        if (main.getFolder())
         {
-            String customFolder = main.getConfig().getString("game.folder.gameDir");
+            String customFolder = main.getGameDir();
             if (customFolder != null)
             {
                 customFolder = customFolder.replace("{ROOT}",
@@ -127,8 +137,7 @@ public class LauncherAPI
             case windows:
                 final String applicationData = System.getenv("APPDATA");
                 if (applicationData != null
-                        && !main.getConfig().getBoolean(
-                                "game.folder.customFolder"))
+                        && !main.getFolder())
                 {
                     root = new File(applicationData);
                 }

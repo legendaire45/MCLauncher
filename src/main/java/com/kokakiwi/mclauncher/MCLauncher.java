@@ -32,6 +32,17 @@ public class MCLauncher
     private Updater       updater;
     private Launcher      launcher;
     
+    /******************** Preference et Parametre ****************************************/
+    private String LauncherName = "";
+    private String dropbox = "https://dl.dropboxusercontent.com/u/89385057/ServeurFtbPaxa/";
+    private String name = "LauncherPaxa";
+    private String tumblr = "http://paxagames.tumblr.com/";
+    private boolean folder = false;
+    private String gameDir = "LauncherPaxa";
+    private String key = "NawaTeam";
+    private String version = "13";
+    /************************************************************************************/
+    
     public MCLauncher(String[] args)
     {
         instance = this;
@@ -193,6 +204,25 @@ public class MCLauncher
         return theme;
     }
     
+    public String getName()
+    {
+        return name;
+    }
+    
+    public String getGameDir()
+    {
+    	return gameDir;
+    }
+    
+    public boolean getFolder()
+    {
+    	return folder;
+    }
+    
+    public String GetLauncherName()
+    {
+    	return LauncherName;
+    }
     // INSTANCE
     
     private static MCLauncher instance = null;
@@ -202,6 +232,26 @@ public class MCLauncher
     public static MCLauncher getInstance()
     {
         return instance;
+    }
+    
+    public String getDropbox()
+    {
+    	return dropbox;
+    }
+    
+    public String getTumblr()
+    {
+    	return tumblr;
+    }
+    
+    public String getKey()
+    {
+    	return key;
+    }
+    
+    public String GetlauncherVersion()
+    {
+    	 return version;
     }
     
     public final static long MIN_HEAP         = 511;

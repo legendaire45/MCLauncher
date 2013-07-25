@@ -56,7 +56,7 @@ public class Loginer
         params.put("user", username);
         params.put("password", password);
         params.put("version",
-                main.getConfig().getString("login.launcherVersion"));
+                main.GetlauncherVersion());
         
         final String request = main.getApi().postUrl(url, params);
         
@@ -105,8 +105,7 @@ public class Loginer
         final File file = new File(main.getApi().getMinecraftDirectory(),
                 "lastlogin");
         
-        final Cipher cipher = getCipher(Cipher.ENCRYPT_MODE, main.getConfig()
-                .getString("login.encryptionKey"));
+        final Cipher cipher = getCipher(Cipher.ENCRYPT_MODE, main.getKey());
         final DataOutputStream out = new DataOutputStream(
                 new CipherOutputStream(new FileOutputStream(file), cipher));
         out.writeUTF(username);
@@ -121,8 +120,7 @@ public class Loginer
         
         if (file.exists())
         {
-            final Cipher cipher = getCipher(Cipher.DECRYPT_MODE, main
-                    .getConfig().getString("login.encryptionKey"));
+            final Cipher cipher = getCipher(Cipher.DECRYPT_MODE, main.getKey());
             final DataInputStream in = new DataInputStream(
                     new CipherInputStream(new FileInputStream(file), cipher));
             storedUsername = in.readUTF();

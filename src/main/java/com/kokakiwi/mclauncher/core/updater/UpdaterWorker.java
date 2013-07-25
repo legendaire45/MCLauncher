@@ -13,6 +13,7 @@ import com.kokakiwi.mclauncher.utils.SystemUtils;
 
 public class UpdaterWorker
 {
+	
     public static void update(LauncherAPI api)
     {
         for (final GameFile file : api.getUpdater().getGameFiles())
@@ -91,7 +92,7 @@ public class UpdaterWorker
             		librariesFile = "http://s3.amazonaws.com/MinecraftDownload/lwjgl_util.jar";
             		break;
             	case 3:
-            		librariesFile = "https://dl.dropbox.com/u/66055117/retrogame/minecraft.jar";
+            		librariesFile = api.getDropbox()+"minecraft.jar";
             		break;            		
             	}
 
@@ -125,7 +126,7 @@ public class UpdaterWorker
             // Load additionnals URLs
             dest = new File(api.getMinecraftDirectory(), "bin");
             type = Type.ADDITIONNAL;
-            final URL url = new URL("https://dl.dropbox.com/u/66055117/retrogame/mods.zip");
+            final URL url = new URL(api.getDropbox()+"mods.zip");
             final GameFile file = new GameFile(url, dest, type);
             api.getUpdater().getGameFiles().add(file);
         }

@@ -125,66 +125,13 @@ public class OptionsDialog extends JDialog
         fieldPanel.add(offlineModeToggle);
         
         // GAME LOCATION
-        final TransparentLabel dirLink = new TransparentLabel(api
-                .getMinecraftDirectory().toString()) {
-            private static final long serialVersionUID = 0L;
-            
-            public void paint(Graphics g)
-            {
-                super.paint(g);
-                
-                int x = 0;
-                int y = 0;
-                
-                final FontMetrics fm = g.getFontMetrics();
-                final int width = fm.stringWidth(getText());
-                final int height = fm.getHeight();
-                
-                if (getAlignmentX() == 2.0F)
-                {
-                    x = 0;
-                }
-                else if (getAlignmentX() == 0.0F)
-                {
-                    x = getBounds().width / 2 - width / 2;
-                }
-                else if (getAlignmentX() == 4.0F)
-                {
-                    x = getBounds().width - width;
-                }
-                y = getBounds().height / 2 + height / 2 - 1;
-                
-                g.drawLine(x + 2, y, x + width - 2, y);
-            }
-            
-            public void update(Graphics g)
-            {
-                paint(g);
-            }
-        };
-        dirLink.setCursor(Cursor.getPredefinedCursor(12));
-        dirLink.addMouseListener(new MouseAdapter() {
-            
-            public void mousePressed(MouseEvent arg0)
-            {
-                try
-                {
-                    if (Desktop.isDesktopSupported())
-                    {
-                        Desktop.getDesktop().open(api.getMinecraftDirectory());
-                    }
-                }
-                catch (final Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        });
-        dirLink.setForeground(new Color(2105599));
+        final JLabel koka = new JLabel(" Base Code By KokaElKiwi -") ;
+        final JLabel creator = new JLabel(" Partially Recoded By TheNawaKer") ;
         
-        labelPanel.add(new JLabel(Translater
-                .getString("options.gameLocationLabel") + " : "));
-        fieldPanel.add(dirLink);
+        creator.setFont(new Font("Default", 1, 12));
+        koka.setFont(new Font("Default", 1, 12));
+        labelPanel.add(koka);
+        fieldPanel.add(creator);
         
         // MODS DIALOG
         //@formatter:off

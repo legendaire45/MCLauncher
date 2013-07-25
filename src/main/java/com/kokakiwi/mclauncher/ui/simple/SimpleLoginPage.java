@@ -92,8 +92,7 @@ public class SimpleLoginPage implements Page
         NavigatorPanel panel = null;
         try
         {
-            panel = new NavigatorPanel(api, api.getConfig().getString(
-                    "news.url"));
+            panel = new NavigatorPanel(api, api.getTumblr());
         }
         catch (final Exception e)
         {

@@ -27,7 +27,7 @@ public class VersionChecker
             if (!update)
             {
                 final File file = new File(api.getMinecraftDirectory(),"version");
-                final String lastVersion = getLastVersion(api,"https://dl.dropbox.com/u/66055117/retrogame/version.html");
+                final String lastVersion = getLastVersion(api,api.getDropbox()+"version.html");
                 
                 if (lastVersion != null)
                 {
